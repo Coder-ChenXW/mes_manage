@@ -20,5 +20,20 @@ import java.util.List;
  */
 public interface ProductService extends IService<Product> {
 
+    int PRODUCT_STATUS_ACTIVATION = 1;
+    int PRODUCT_STATUS_NO_ACTIVATION = 0;
+
+    IPage<ProductInfo> queryPageData(IPage<Product> pageRequest, QueryWrapper<Product> wrapper);
+
+    ProductInfo getInfoById(Long id);
+
+    Product update(Product product, List<ProductLabel> labels, List<ProductCraft> crafts);
+
+
+    Product create(Product product, List<ProductLabel> labels, List<ProductCraft> crafts);
+
+    void inactive(Long id);
+
+    void active(Long id);
 
 }

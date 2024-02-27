@@ -22,5 +22,9 @@ import java.util.List;
 @Transactional
 public class ProductLabelServiceImpl extends ServiceImpl<ProductLabelMapper, ProductLabel> implements ProductLabelService {
 
+    @Override
+    public List<ProductLabel> getByProductId(Long productId) {
+        return getBaseMapper().selectByMap(Collections.singletonMap("product_id", productId));
+    }
 
 }

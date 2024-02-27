@@ -16,4 +16,9 @@ import java.util.List;
 public interface ProductLabelService extends IService<ProductLabel> {
 
 
+    int LABEL_STATUS_NORMAL = 1;
+
+    List<ProductLabel> getByProductId(Long productId);
+
+
 }

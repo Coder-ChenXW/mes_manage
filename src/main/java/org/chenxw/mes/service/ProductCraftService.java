@@ -15,4 +15,5 @@ import java.util.List;
  */
 public interface ProductCraftService extends IService<ProductCraft> {
 
+    List<ProductCraft> getByProductId(Long id);
 }

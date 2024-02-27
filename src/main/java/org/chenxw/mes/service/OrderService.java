@@ -19,6 +19,10 @@ import java.util.List;
  */
 public interface OrderService extends IService<Order> {
 
+    int ORDER_STATUS_CREATED = 0;
+    int ORDER_STATUS_STEPED = 1;
+    int ORDER_STATUS_FINISHED = 2;
 
+    List<Order> getByProductId(Long id);
 
 }

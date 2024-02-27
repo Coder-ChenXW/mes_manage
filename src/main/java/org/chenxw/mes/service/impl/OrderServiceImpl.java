@@ -33,5 +33,9 @@ import java.util.stream.Collectors;
 @Transactional
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
 
+    @Override
+    public List<Order> getByProductId(Long productId) {
+        return getBaseMapper().selectByMap(Collections.singletonMap("product_id", productId));
+    }
 
 }

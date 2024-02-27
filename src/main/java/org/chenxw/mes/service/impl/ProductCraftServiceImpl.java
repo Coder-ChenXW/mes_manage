@@ -22,4 +22,8 @@ import java.util.List;
 @Transactional
 public class ProductCraftServiceImpl extends ServiceImpl<ProductCraftMapper, ProductCraft> implements ProductCraftService {
 
+    @Override
+    public List<ProductCraft> getByProductId(Long productId) {
+        return getBaseMapper().selectByMap(Collections.singletonMap("product_id", productId));
+    }
 }

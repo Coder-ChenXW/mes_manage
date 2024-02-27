@@ -29,5 +29,6 @@ public interface EmployeeService extends IService<Employee> {
 
     void leaveTheJob(Long id);
 
+    Employee getByUserId(Long userId);
 
 }

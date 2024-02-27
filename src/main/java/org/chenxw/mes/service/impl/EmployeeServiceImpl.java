@@ -96,6 +96,12 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         }
     }
 
+    @Override
+    public Employee getByUserId(Long userId) {
+        QueryWrapper<Employee> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+        return getBaseMapper().selectOne(wrapper);
+    }
     // 检查员工是否存在
     private void checkExists(Employee employee){
         QueryWrapper<Employee> wrapper = Wrappers.query();
