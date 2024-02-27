@@ -12,6 +12,8 @@ import org.chenxw.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @Author: ChenXW
  * @Date:2024/2/27 12:43
@@ -38,21 +40,95 @@ public class EmployeeController {
                                                  @RequestParam(value = "employeeName", required = false) String employeeName,
                                                  @RequestParam(value = "status", required = false) Integer status) {
 
-        IPage<Employee> page = new Page<>(pageIndex,pageSize);
+        IPage<Employee> page = new Page<>(pageIndex, pageSize);
         QueryWrapper<Employee> wrapper = new QueryWrapper<>();
-        if (StringUtils.isNotBlank(employeeNo)){
+        if (StringUtils.isNotBlank(employeeNo)) {
             wrapper.eq("employee_no", employeeNo);
         }
-        if (StringUtils.isNotBlank(employeeName)){
+        if (StringUtils.isNotBlank(employeeName)) {
             wrapper.likeRight("employee_name", employeeName);
         }
-        if (status!=null && (status==0 || status==1)){
+        if (status != null && (status == 0 || status == 1)) {
             wrapper.eq("status", status);
         }
 
-        wrapper.gt("id",0);
+        wrapper.gt("id", 0);
         return Result.generateSuccess(employeeService.page(page, wrapper));
 
     }
+
+
+    /**
+     * @description: 根据id查询员工
+     * @author: ChenXW
+     * @date: 2024/2/27 15:04
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询员工")
+    public Result<Employee> getEmployeeById(@PathVariable("id") Long id) {
+        Employee employee = employeeService.getById(id);
+        return Result.generateSuccess(employee);
+    }
+
+    /**
+     * @description: 获取员工状态
+     * @author: ChenXW
+     * @date: 2024/2/27 15:09
+     */
+    @GetMapping("/activated")
+    @ApiOperation("获取员工状态")
+    public Result<List<Employee>> getActivatedEmployees() {
+        List<Employee> employees = employeeService.getActivatedEmployees();
+        return Result.generateSuccess(employees);
+    }
+
+    /**
+     * @description: 根据id修改员工信息
+     * @author: ChenXW
+     * @date: 2024/2/27 15:18
+     */
+    @ApiOperation("根据id修改员工信息")
+    @PutMapping("/{id}")
+    public Result<Void> update(@PathVariable("id") Long id, @RequestBody Employee employee){
+        employee.setId(id);
+        employeeService.update(employee);
+        return Result.generateSuccess(null);
+    }
+
+    /**
+     * @description: 删除员工
+     * @author: ChenXW
+     * @date: 2024/2/27 15:56
+     */
+    @DeleteMapping("/{id}")
+    @ApiOperation("删除员工")
+    public Result<Void> delete(@PathVariable("id") Long id){
+        employeeService.removeById(id);
+        return Result.generateSuccess(null);
+    }
+
+    /**
+     * @description: 停用员工
+     * @author: ChenXW
+     * @date: 2024/2/27 16:00
+     */
+    @PatchMapping("/{id}:onTheJob")
+    @ApiOperation("停用员工")
+    public Result<Void> onTheJob(@PathVariable("id") Long id){
+        employeeService.onTheJob(id);
+        return Result.generateSuccess(null);
+    }
+
+    /**
+     * @description: 启用员工
+     * @author: ChenXW
+     * @date: 2024/2/27 16:09
+     */
+    @PatchMapping("/{id}:leaveTheJob")
+    public Result<Void> leaveTheJob(@PathVariable("id") Long id){
+        employeeService.leaveTheJob(id);
+        return Result.generateSuccess(null);
+    }
+
 
 }

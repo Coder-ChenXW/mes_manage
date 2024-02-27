@@ -21,4 +21,13 @@ public interface EmployeeService extends IService<Employee> {
     int EMPLOYEE_STATUS_LEAVE_THE_JOB = 0;
 
 
+    List<Employee> getActivatedEmployees();
+
+    void update(Employee employee);
+
+    void onTheJob(Long id);
+
+    void leaveTheJob(Long id);
+
+
 }
