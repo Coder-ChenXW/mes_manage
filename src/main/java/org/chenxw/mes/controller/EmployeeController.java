@@ -3,6 +3,8 @@ package org.chenxw.mes.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.chenxw.mes.entity.Employee;
 import org.chenxw.mes.service.EmployeeService;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * @Date:2024/2/27 12:43
  * @Description: 员工管理控制器
  **/
+@Api(value = "员工管理相关")
 @RestController
 @RequestMapping("/base/employee")
 public class EmployeeController {
@@ -28,6 +31,7 @@ public class EmployeeController {
      * @date: 2024/2/27 12:49
      */
     @GetMapping("/page")
+    @ApiOperation("分页查询")
     public Result<IPage<Employee>> queryPageData(@RequestParam("pageIndex") Integer pageIndex,
                                                  @RequestParam("pageSize") Integer pageSize,
                                                  @RequestParam(value = "employeeNo", required = false) String employeeNo,
