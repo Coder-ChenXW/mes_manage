@@ -1,0 +1,17 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /mes
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/mes?useUnicode=true&characterEncoding=utf8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+mybatis-plus:
+  configuration:
+    #开启日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
