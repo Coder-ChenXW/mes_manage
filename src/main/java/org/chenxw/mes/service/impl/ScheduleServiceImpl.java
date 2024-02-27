@@ -33,4 +33,9 @@ import java.util.stream.Collectors;
 public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> implements ScheduleService {
 
 
+    @Override
+    public List<Schedule> getAllByOrderId(Long orderId) {
+        return baseMapper.selectByMap(Collections.singletonMap("order_id", orderId));
+    }
+
 }

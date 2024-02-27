@@ -25,4 +25,6 @@ public interface OrderService extends IService<Order> {
 
     List<Order> getByProductId(Long id);
 
+    IPage<OrderInfo> queryPageData(IPage<Order> pageRequest, QueryWrapper<Order> wrapper);
+
 }

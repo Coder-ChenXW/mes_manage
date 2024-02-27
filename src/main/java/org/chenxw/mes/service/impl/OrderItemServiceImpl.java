@@ -22,4 +22,8 @@ import java.util.List;
 @Transactional
 public class OrderItemServiceImpl extends ServiceImpl<OrderItemMapper, OrderItem> implements OrderItemService {
 
+    @Override
+    public List<OrderItem> getItemsByOrderId(Long orderId) {
+        return getBaseMapper().selectByMap(Collections.singletonMap("order_id", orderId));
+    }
 }

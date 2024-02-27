@@ -15,4 +15,5 @@ import java.util.List;
  */
 public interface OrderItemService extends IService<OrderItem> {
 
+    List<OrderItem> getItemsByOrderId(Long orderId);
 }
