@@ -102,6 +102,20 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
         wrapper.eq("user_id", userId);
         return getBaseMapper().selectOne(wrapper);
     }
+
+    @Override
+    public Employee create(Employee employee, User user, Role role) {
+        checkExists(employee);
+        List<Long> roleIds = Collections.singletonList(role.getId());
+        User entity = authService.register(user, roleIds);
+        employee.setStatus(EMPLOYEE_STATUS_ON_THE_JOB);
+        employee.setGender(user.getGender());
+        employee.setUserId(entity.getId());
+        employee.setRoleId(role.getId());
+        baseMapper.insert(employee);
+        return employee;
+    }
+
     // 检查员工是否存在
     private void checkExists(Employee employee){
         QueryWrapper<Employee> wrapper = Wrappers.query();

@@ -26,4 +26,10 @@ public class OrderItemServiceImpl extends ServiceImpl<OrderItemMapper, OrderItem
     public List<OrderItem> getItemsByOrderId(Long orderId) {
         return getBaseMapper().selectByMap(Collections.singletonMap("order_id", orderId));
     }
+
+    @Override
+    public void removeItemsByOrderId(Long orderId) {
+        getBaseMapper().deleteByMap(Collections.singletonMap("order_id", orderId));
+    }
+
 }

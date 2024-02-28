@@ -31,4 +31,6 @@ public interface EmployeeService extends IService<Employee> {
 
     Employee getByUserId(Long userId);
 
+    Employee create(Employee employee, User user, Role role);
+
 }

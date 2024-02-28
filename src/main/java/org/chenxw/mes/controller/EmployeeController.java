@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.chenxw.mes.controller.prams.CreateEmployeeRequest;
 import org.chenxw.mes.entity.Employee;
 import org.chenxw.mes.service.EmployeeService;
 import org.chenxw.result.Result;
@@ -93,6 +94,12 @@ public class EmployeeController {
         employee.setId(id);
         employeeService.update(employee);
         return Result.generateSuccess(null);
+    }
+
+    @PostMapping
+    public Result<Employee> create(@RequestBody CreateEmployeeRequest request){
+        Employee employee = employeeService.create(request.getEmployee(), request.getUser(), request.getRole());
+        return Result.generateSuccess(employee);
     }
 
     /**

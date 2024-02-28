@@ -27,4 +27,19 @@ public interface OrderService extends IService<Order> {
 
     IPage<OrderInfo> queryPageData(IPage<Order> pageRequest, QueryWrapper<Order> wrapper);
 
+    List<OrderInfo> getCreatedOrders();
+
+    List<OrderInfo> getCuttingOrders();
+
+    List<OrderInfo> getProcessingOrders();
+
+    Integer getWaitProcessQty(Long orderId, Long craftId);
+
+    void update(Order order, List<OrderItem> items);
+
+    Order create(Order order, List<OrderItem> items);
+
+    void cuttingOrder(Long id, Integer qty);
+
+    void finishOrder(Long id, Integer qty);
 }
