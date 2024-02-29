@@ -19,6 +19,10 @@ public class Constants {
 
         List<String> normalButtons = new ArrayList<>();
 
+        normalButtons.add("order.header.schedule");
+        normalButtons.add("order.header.finish");
+        normalButtons.add("order.content.detail");
+
 
         List<String> cutter = new ArrayList<>();
         cutter.add("employee.content.detail");

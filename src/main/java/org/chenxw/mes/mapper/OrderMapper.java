@@ -4,6 +4,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.chenxw.mes.entity.Order;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *
@@ -14,5 +17,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 @Mapper
 public interface OrderMapper extends BaseMapper<Order> {
+
+
+    List<Map<String, Object>> selectCraftReportInfo();
 
 }

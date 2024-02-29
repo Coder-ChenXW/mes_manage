@@ -42,4 +42,6 @@ public interface OrderService extends IService<Order> {
     void cuttingOrder(Long id, Integer qty);
 
     void finishOrder(Long id, Integer qty);
+
+
 }

@@ -32,10 +32,24 @@ import java.util.stream.Collectors;
 @Transactional
 public class ScheduleServiceImpl extends ServiceImpl<ScheduleMapper, Schedule> implements ScheduleService {
 
+    @Autowired
+    private AuthService authService;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private ProductCraftService productCraftService;
+
+    @Autowired private OrderService orderService;
 
     @Override
     public List<Schedule> getAllByOrderId(Long orderId) {
         return baseMapper.selectByMap(Collections.singletonMap("order_id", orderId));
     }
+
 
 }

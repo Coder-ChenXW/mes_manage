@@ -5,6 +5,7 @@ import org.chenxw.mes.domain.OrderReportInfo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,6 +17,12 @@ import java.util.List;
  */
 public interface ReportService{
 
+
+
+    OrderReportInfo getOrderReportInfo(Long orderId);
+
+
+    List<Map<String, Object>> getCraftReportInfo();
 
 
 }
