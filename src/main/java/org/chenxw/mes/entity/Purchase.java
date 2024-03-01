@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -27,14 +27,21 @@ public class Purchase implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "purchase_id", type = IdType.AUTO)
-    private Integer purchaseId;
+    private Long purchaseId;
 
-    @TableField(value = "user_id")
-    private Integer userId;
+    @TableField(value = "material_code")
+    private String materialCode;
 
-    @TableField(value = "purchase_date", fill = FieldFill.INSERT)
-    private Date purchaseDate;
+    @TableField(value = "material_name")
+    private String materialName;
 
-    @TableField(value = "supplier_id")
-    private Integer supplierId;
+    @TableField(value = "vender")
+    // private String supplierName;
+    private String vender;
+
+    @TableField(value = "purchase_price")
+    private BigDecimal purchasePrice;
+
+    @TableField(value = "purchase_quantity")
+    private Integer purchaseQuantity;
 }

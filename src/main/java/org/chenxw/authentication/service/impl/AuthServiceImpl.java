@@ -1,11 +1,13 @@
 package org.chenxw.authentication.service.impl;
 
+import org.chenxw.authentication.entity.Log;
 import org.chenxw.authentication.mapper.RoleMapper;
 import org.chenxw.authentication.mapper.UserMapper;
 import org.chenxw.authentication.mapper.UserRoleMapper;
 import org.chenxw.authentication.entity.Role;
 import org.chenxw.authentication.entity.User;
 import org.chenxw.authentication.entity.UserRole;
+import org.chenxw.authentication.repository.LogRepository;
 import org.chenxw.authentication.service.AuthService;
 import org.chenxw.authentication.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +51,9 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     private UserRoleMapper userRoleMapper;
 
+    @Autowired
+    private LogRepository logRepository;
+
 
     @Override
     public String login(String username, String password) {
@@ -60,11 +68,30 @@ public class AuthServiceImpl implements AuthService {
                 throw new RuntimeException("此账号已停止使用,请联系管理员");
             }
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            logUserLogin(username);
+
             return JwtTokenUtil.generateToken(userDetails);
         } catch (AuthenticationException e) {
             throw new RuntimeException("用户名或密码错误");
         }
     }
+
+    private void logUserLogin(String username) {
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm:ss");
+
+        String currentDate = sdf1.format(new Date());
+        String currentTime = sdf2.format(new Date());
+
+        Log log = new Log();
+
+        log.setLogDate(new Timestamp(System.currentTimeMillis()));
+        log.setLogInfo("用户 " + username + " 在 " + currentDate + " " + currentTime + " 登录系统");
+        logRepository.save(log);
+    }
+
+
 
     @Override
     public void inactive(String username) {

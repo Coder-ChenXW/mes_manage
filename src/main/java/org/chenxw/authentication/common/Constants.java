@@ -60,6 +60,8 @@ public class Constants {
 
         adminButtons.add("purchase.header.add");
         adminButtons.add("purchase.content.detail");
+        adminButtons.add("purchase.content.update");
+        adminButtons.add("purchase.content.delete");
 
         List<String> hrButtons = new ArrayList<>();
 
@@ -84,6 +86,8 @@ public class Constants {
 
         hrButtons.add("purchase.header.add");
         hrButtons.add("purchase.content.detail");
+        hrButtons.add("purchase.content.update");
+        hrButtons.add("purchase.content.delete");
 
 
 

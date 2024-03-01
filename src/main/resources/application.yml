@@ -11,6 +11,9 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  jpa:
+    hibernate:
+      ddl-auto: update
 mybatis-plus:
   configuration:
     #开启日志
