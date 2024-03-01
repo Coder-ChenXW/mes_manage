@@ -52,6 +52,15 @@ public class Constants {
         adminButtons.add("order.content.update");
         adminButtons.add("order.content.delete");
 
+        adminButtons.add("supplier.header.add");
+        adminButtons.add("supplier.content.detail");
+        adminButtons.add("supplier.content.update");
+        adminButtons.add("supplier.content.delete");
+
+
+        adminButtons.add("purchase.header.add");
+        adminButtons.add("purchase.content.detail");
+
         List<String> hrButtons = new ArrayList<>();
 
         hrButtons.add("employee.header.add");
@@ -69,6 +78,14 @@ public class Constants {
 
         hrButtons.add("order.content.detail");
         hrButtons.add("order.content.update");
+
+        hrButtons.add("supplier.header.add");
+        hrButtons.add("supplier.content.detail");
+
+        hrButtons.add("purchase.header.add");
+        hrButtons.add("purchase.content.detail");
+
+
 
         roleButtons.put("admin", adminButtons);
         roleButtons.put("hr", hrButtons);
