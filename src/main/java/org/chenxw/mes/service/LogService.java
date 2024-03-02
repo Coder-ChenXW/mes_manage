@@ -17,6 +17,6 @@ import java.util.List;
  */
 public interface LogService  extends IService<Log> {
 
-    List<Log> queryLogsByDate(Date startDate, Date endDate);
+    List<Log> queryLogsByUsername(String username);
 
 }

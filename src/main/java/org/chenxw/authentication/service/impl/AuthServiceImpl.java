@@ -88,6 +88,7 @@ public class AuthServiceImpl implements AuthService {
 
         log.setLogDate(new Timestamp(System.currentTimeMillis()));
         log.setLogInfo("用户 " + username + " 在 " + currentDate + " " + currentTime + " 登录系统");
+        log.setUsername(username);
         logRepository.save(log);
     }
 

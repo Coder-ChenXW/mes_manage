@@ -35,21 +35,21 @@ public class LogController {
      */
     @GetMapping
     @ApiOperation("查询所有日志")
-    public Result<List<Log>> getAllLogs() {
-        List<Log> logs = logService.list();
-        return Result.generateSuccess(logs);
+    public Result<IPage<Log>> getAllLogs(int pageNum, int pageSize) {
+        Page<Log> page = new Page<>(pageNum, pageSize);
+        IPage<Log> logsPage = logService.page(page);
+        return Result.generateSuccess(logsPage);
     }
 
     /**
-     * @description: 根据起始日期和结束日期查询日志
+     * @description: 根据用户名查询日志
      * @author: ChenXW
      * @date: 2024/3/1 23:31
      */
-    @PostMapping("/query")
-    @ApiOperation("根据起始日期和结束日期查询日志")
-    public Result<List<Log>> queryLogsByDate(@RequestBody Date startDate, @RequestBody Date endDate) {
-        List<Log> logs = logService.queryLogsByDate(startDate, endDate);
+    @GetMapping("/query/{username}")
+    @ApiOperation("根据用户名查询日志")
+    public Result<List<Log>> queryLogsByUsername(@PathVariable String username) {
+        List<Log> logs = logService.queryLogsByUsername(username);
         return Result.generateSuccess(logs);
     }
-
 }

@@ -29,5 +29,8 @@ public class Log implements Serializable {
     @Column(name = "log_info")
     private String logInfo;
 
+    @Column(name = "username")
+    private String username;
+
 }
 

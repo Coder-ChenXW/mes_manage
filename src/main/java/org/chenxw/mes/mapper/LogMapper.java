@@ -2,6 +2,7 @@ package org.chenxw.mes.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.chenxw.authentication.entity.Log;
 import org.chenxw.mes.entity.Purchase;
 
@@ -19,6 +20,8 @@ import java.util.List;
 @Mapper
 public interface LogMapper extends BaseMapper<Log> {
 
-    List<Log> queryLogsByDate(Date startDate, Date endDate);
+    @Select("SELECT * FROM log WHERE username = #{username}")
+    List<Log> queryLogsByUsername(String username);
+
 
 }

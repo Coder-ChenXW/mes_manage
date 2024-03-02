@@ -31,7 +31,7 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, Log> implements LogSe
     private LogMapper logMapper;
 
     @Override
-    public List<Log> queryLogsByDate(Date startDate, Date endDate) {
-        return logMapper.queryLogsByDate(startDate, endDate);
+    public List<Log> queryLogsByUsername(String username) {
+        return logMapper.queryLogsByUsername(username);
     }
 }
