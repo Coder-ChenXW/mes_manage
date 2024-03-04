@@ -111,22 +111,16 @@ public class SupplierController {
      */
     @DeleteMapping("/{id}")
     @ApiOperation("删除供应商")
-    public Result<Void> delete(@PathVariable("id") Long id){
+    public Result<Void> delete(@PathVariable("id") Long id) {
         supplierService.removeById(id);
         return Result.generateSuccess(null);
     }
 
     @GetMapping
     public ResponseEntity<Result<List<SupplierDto>>> fetchSuppliers() {
-        try {
-            List<SupplierDto> suppliers = supplierService.fetchSuppliers();
-            return ResponseEntity.ok().body(Result.generateSuccess(suppliers));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Result.generateError(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage()));
-        }
+        List<SupplierDto> suppliers = supplierService.fetchSuppliers();
+        return ResponseEntity.ok().body(Result.generateSuccess(suppliers));
     }
-
 
 
 }
