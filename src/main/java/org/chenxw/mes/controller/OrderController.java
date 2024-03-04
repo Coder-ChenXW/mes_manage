@@ -139,6 +139,7 @@ public class OrderController {
      * @date: 2024/2/28 14:07
      */
     @PostMapping
+    @ApiOperation("创建新订单")
     public Result<Order> create(@RequestBody CreateOrderRequest request) {
         Order order = orderService.create(request.getOrder(), request.getItems());
         return Result.generateSuccess(order);

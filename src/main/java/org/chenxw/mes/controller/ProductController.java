@@ -126,6 +126,7 @@ public class ProductController {
      * @date: 2024/2/27 22:16
      */
     @PatchMapping("/{id}:inactive")
+    @ApiOperation("停用产品")
     public Result<Void> inactive(@PathVariable("id") Long id){
         productService.inactive(id);
         return Result.generateSuccess(null);
@@ -138,6 +139,7 @@ public class ProductController {
      * @date: 2024/2/27 22:19
      */
     @PatchMapping("/{id}:active")
+    @ApiOperation("启用产品")
     public Result<Void> active(@PathVariable("id") Long id){
         productService.active(id);
         return Result.generateSuccess(null);

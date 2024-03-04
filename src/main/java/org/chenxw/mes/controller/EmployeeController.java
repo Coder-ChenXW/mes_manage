@@ -132,6 +132,7 @@ public class EmployeeController {
      * @date: 2024/2/27 16:09
      */
     @PatchMapping("/{id}:leaveTheJob")
+    @ApiOperation("启用员工")
     public Result<Void> leaveTheJob(@PathVariable("id") Long id){
         employeeService.leaveTheJob(id);
         return Result.generateSuccess(null);
