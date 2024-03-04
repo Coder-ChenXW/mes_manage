@@ -116,7 +116,13 @@ public class SupplierController {
         return Result.generateSuccess(null);
     }
 
+    /**
+     * @description: 下拉列表获取供应商的名字
+     * @author: ChenXW
+     * @date: 2024/3/4 15:43
+     */
     @GetMapping
+    @ApiOperation("下拉列表获取供应商的名字")
     public ResponseEntity<Result<List<SupplierDto>>> fetchSuppliers() {
         List<SupplierDto> suppliers = supplierService.fetchSuppliers();
         return ResponseEntity.ok().body(Result.generateSuccess(suppliers));
