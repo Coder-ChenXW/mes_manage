@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.models.auth.In;
 import org.apache.commons.lang3.StringUtils;
+import org.chenxw.authentication.domain.dto.SupplierDto;
 import org.chenxw.mes.controller.prams.CreateEmployeeRequest;
 import org.chenxw.mes.entity.Employee;
 import org.chenxw.mes.entity.Supplier;
@@ -14,6 +15,8 @@ import org.chenxw.mes.service.EmployeeService;
 import org.chenxw.mes.service.SupplierService;
 import org.chenxw.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -111,6 +114,17 @@ public class SupplierController {
     public Result<Void> delete(@PathVariable("id") Long id){
         supplierService.removeById(id);
         return Result.generateSuccess(null);
+    }
+
+    @GetMapping
+    public ResponseEntity<Result<List<SupplierDto>>> fetchSuppliers() {
+        try {
+            List<SupplierDto> suppliers = supplierService.fetchSuppliers();
+            return ResponseEntity.ok().body(Result.generateSuccess(suppliers));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Result.generateError(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage()));
+        }
     }
 
 
