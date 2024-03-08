@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.chenxw.mes.mapper.EmployeeMapper">
+
+    <!-- 根据订单ID查询相关的员工信息 -->
+    <select id="selectEmployeesByOrderId" parameterType="java.lang.Long" resultType="org.chenxw.mes.entity.Employee">
+        SELECT * FROM employee
+        WHERE order_id = #{orderId}
+    </select>
+
+</mapper>

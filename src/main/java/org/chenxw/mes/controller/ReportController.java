@@ -84,11 +84,6 @@ public class ReportController {
         AtomicInteger colPointer = new AtomicInteger(0);
         header1.createCell(colPointer.getAndIncrement()).setCellValue("序号");
         header1.createCell(colPointer.getAndIncrement()).setCellValue("工序\\姓名");
-        for (int i = 0; i < orderReports.getEmployees().size(); i++) {
-            Employee employee = orderReports.getEmployees().get(i);
-            header1.createCell(colPointer.getAndIncrement()).setCellValue(employee.getEmployeeName());
-            employeeIdColMap.put(employee.getId(), colPointer.get() - 1);
-        }
         header1.createCell(colPointer.getAndIncrement()).setCellValue("预期数量");
         int expectQtyColIndex = colPointer.get() - 1;
         header1.createCell(colPointer.getAndIncrement()).setCellValue("实际数量");
@@ -112,9 +107,6 @@ public class ReportController {
 
         sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 1));
 
-        // if (colPointer.get()-3 != 2){
-        //     sheet.addMergedRegion(new CellRangeAddress(0, 0, 2, colPointer.get()-3));
-        // }
 
         sheet.addMergedRegion(new CellRangeAddress(0, 0, colPointer.get() - 2, colPointer.get() - 1));
         ByteArrayOutputStream bos = new ByteArrayOutputStream();

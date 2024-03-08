@@ -45,8 +45,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     @Autowired
     private ProductCraftService productCraftService;
 
-    @Autowired
-    private ScheduleService scheduleService;
 
     @Autowired
     private AuthService authService;
@@ -92,10 +90,8 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
         Map<String, Object> params = new HashMap<>();
         params.put("order_id", orderId);
         params.put("product_craft_id", craftId);
-        List<Schedule> schedules = scheduleService.getBaseMapper().selectByMap(params);
-        int finishedQty = schedules.stream().mapToInt(Schedule::getQty).sum();
 
-        return order.getQty() - finishedQty;
+        return order.getQty();
     }
 
     @Override
@@ -191,10 +187,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
         info.setCreateByName(creator.getEmployeeName());
         info.setUpdateByName(updater.getEmployeeName());
-
-        List<Schedule> schedules = scheduleService.getAllByOrderId(order.getId());
-        int finishedQty = schedules.stream().mapToInt(Schedule::getQty).sum();
-        info.setFinishedQty(finishedQty);
 
         List<ProductCraft> crafts = productCraftService.getByProductId(order.getProductId());
 
