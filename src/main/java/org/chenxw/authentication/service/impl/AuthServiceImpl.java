@@ -138,7 +138,7 @@ public class AuthServiceImpl implements AuthService {
         }
         List<Role> roles = roleMapper.selectBatchIds(roleIds);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        final String rawPassword = user.getPassword();
+        final String rawPassword = "888888";
         user.setPassword(encoder.encode(rawPassword));
         user.setAvatar("/avatar.png");
         user.setStatus(ACTIVE);

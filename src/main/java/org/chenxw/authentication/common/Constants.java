@@ -18,8 +18,6 @@ public class Constants {
         roleButtons = new HashMap<>();
 
         List<String> normalButtons = new ArrayList<>();
-
-        normalButtons.add("order.header.schedule");
         normalButtons.add("order.header.finish");
         normalButtons.add("order.content.detail");
 
@@ -45,7 +43,6 @@ public class Constants {
 
         adminButtons.add("order.header.add");
         adminButtons.add("order.header.cutting");
-        adminButtons.add("order.header.schedule");
         adminButtons.add("order.header.finish");
 
         adminButtons.add("order.content.detail");
@@ -76,7 +73,6 @@ public class Constants {
 
         hrButtons.add("order.header.add");
         hrButtons.add("order.header.cutting");
-        hrButtons.add("order.header.schedule");
 
         hrButtons.add("order.content.detail");
         hrButtons.add("order.content.update");
